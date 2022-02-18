@@ -10,10 +10,7 @@
 
 
         //Escola Connection String
-        static public string connectionString = "Server = .\\SQLExpress;" +
-                                                " Database=WalletFriend;" +
-                                                "User Id=sa; " +
-                                                "Password=Pa$$w0rd";
+        static public string connectionString = "Server = .\\SQLExpress; Database=WalletFriend; User Id=sa;  Password=Pa$$w0rd";
     }
 
 }
