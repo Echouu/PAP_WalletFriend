@@ -14,6 +14,7 @@ CREATE TABLE [dbo].[Cliente](
     [Email] [varchar](75) NOT NULL,
     [Username] [varchar](50) NOT NULL,
     [Password] [varchar](50) NOT NULL,
+	[Salt] [varchar](100) NOT NULL,
  CONSTRAINT [Pk_Cliente_IDCliente] PRIMARY KEY CLUSTERED 
 (
     [IDCliente] ASC
