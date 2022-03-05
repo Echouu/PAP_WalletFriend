@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'Button.dart';
-import 'InputField.dart';
+import 'button.dart';
+import 'input_field.dart';
 
 class InputWrapper extends StatelessWidget {
   @override
