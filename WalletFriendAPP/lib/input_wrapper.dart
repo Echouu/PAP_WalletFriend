@@ -4,13 +4,15 @@ import 'button.dart';
 import 'input_field.dart';
 
 class InputWrapper extends StatelessWidget {
+  const InputWrapper({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: Column (
     children: <Widget>[
-    SizedBox(height: 40,),
+    const SizedBox(height: 40,),
     Container(
     decoration: BoxDecoration(
     color: Colors.white,
@@ -18,12 +20,12 @@ class InputWrapper extends StatelessWidget {
     ),
     child: InputField(),
     ),
-    SizedBox(height: 40,),
-    Text(
+    const SizedBox(height: 40,),
+    const Text(
     "Esqueci-me da Password?",
     style: TextStyle(color: Colors.grey),
     ),
-    SizedBox(height: 40,),
+    const SizedBox(height: 40,),
     Button()
     ],
     ),

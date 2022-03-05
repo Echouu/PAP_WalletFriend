@@ -4,12 +4,14 @@ import 'header.dart';
 import 'input_wrapper.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(begin: Alignment.topCenter, colors: [
             Colors.cyan,
             Colors.cyan,
@@ -18,10 +20,10 @@ class LoginPage extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            SizedBox(height: 80,)
+            const SizedBox(height: 80,)
             , Header(),
             Expanded(child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60),
