@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'button.dart';
 import 'input_field.dart';
+import 'button_criar_conta.dart';
 
 class InputWrapper extends StatelessWidget {
   const InputWrapper({Key? key}) : super(key: key);
@@ -25,8 +26,16 @@ class InputWrapper extends StatelessWidget {
     "Esqueci-me da Password?",
     style: TextStyle(color: Colors.grey),
     ),
+      const Text(
+        "Criar Conta ",
+        style: TextStyle(color: Colors.grey),
+      ),
     const SizedBox(height: 40,),
-    Button()
+    Button(),
+
+     const SizedBox(height: 30,),
+      Button2()
+
     ],
     ),
     );
