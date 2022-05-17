@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "528875715417",
+    "project_id": "walletfriend-aa72d",
+    "storage_bucket": "walletfriend-aa72d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528875715417:android:33b544e755c87aa5b6ea48",
+        "android_client_info": {
+          "package_name": "com.Artur.walletfriend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528875715417-1qudl9tgvbm3br60ha0q7rpkd4lnteg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8qibIPlZCmAYxWmVZeY0pUQOLGctirqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528875715417-1qudl9tgvbm3br60ha0q7rpkd4lnteg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+<<<<<<< HEAD
+        
+        {
+            "name": "WalletFriendAPP",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "WalletFriendAPP (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "WalletFriendAPP (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+=======
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+>>>>>>> baea061782913866983c398f601a576058b9cf11
+        }
+    ]
+}
