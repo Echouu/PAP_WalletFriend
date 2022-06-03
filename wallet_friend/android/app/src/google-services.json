@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:528875715417:android:33b544e755c87aa5b6ea48",
+        "mobilesdk_app_id": "1:528875715417:android:b84daed2720a71e5b6ea48",
         "android_client_info": {
-          "package_name": "com.Artur.walletfriend"
+          "package_name": "com.example.wallet_friend"
         }
       },
       "oauth_client": [
