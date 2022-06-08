@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wallet_friend/Screens/authenticate/Register.dart';
 import 'package:wallet_friend/Screens/home/HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -225,7 +226,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login Successful"),
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomeScreen())),
+                    MaterialPageRoute(builder: (context) => Register())),
               });
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
