@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wallet_friend/Screens/authenticate/EsquecerPass.dart';
+import 'package:wallet_friend/Screens/authenticate/Register.dart';
 import 'package:wallet_friend/Screens/home/HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -169,11 +171,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 1.h,
                 ),
-                AutoSizeText(
-                  "Esqueceu-se da palavra-passe?",
-                  style: TextStyle(
-                    fontSize: 5.sp,
-                    color: Color(0xFF6F7372),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EsquecerScreen()));
+                  },
+                  child: AutoSizeText(
+                    "Esqueceu-se da palavra-passe?",
+                    style: TextStyle(
+                      fontSize: 5.sp,
+                      color: Color(0xFF6F7372),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -195,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                                builder: (context) => Register()));
                       },
                       child: Center(
                         child: AutoSizeText("Registar",
