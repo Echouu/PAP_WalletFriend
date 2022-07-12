@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../DespesasReceitas/Main/DespesasScreen.dart';
-import '../DespesasReceitas/Main/ReceitasScreen.dart';
+import '../DespesasReceitas/DespesasScreen.dart';
+import '../DespesasReceitas/ReceitasScreen.dart';
 
 class Saldo extends StatefulWidget {
   const Saldo({Key? key}) : super(key: key);
@@ -13,11 +15,29 @@ class Saldo extends StatefulWidget {
 }
 
 class _SaldoState extends State<Saldo> {
+  var snapUser = {};
+
+  void getUserInfo() async {
+    var getSnapUser = await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).get();
+    snapUser = getSnapUser.data()!;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+    Future.delayed(Duration(seconds: 1)).then((value) => setState(() async {
+      setState(() {
+      });
+    }));
+
+  }
   @override
   Widget build(BuildContext context) {
     const primaryColor = Color(0xFF6F7372);
     return Sizer(builder: (context, orientation, deviceType) {
       final DespesasButton = Material(
+        color: Colors.transparent,
         child: Center(
           child: Container(
             width: 30.w,
@@ -45,6 +65,7 @@ class _SaldoState extends State<Saldo> {
       );
 
       final ReceitasButton = Material(
+        color: Colors.transparent,
         child: Center(
           child: Container(
             width: 30.w,
@@ -105,58 +126,90 @@ class _SaldoState extends State<Saldo> {
             Center(
               child: Column(
                 children: <Widget>[
-                  Container(
-                    width: 100.w,
-                    height: 3.h,
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                    ),
-                    child: AutoSizeText(
-                      "Contas de Pagamento",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10.sp,
-                        fontFamily: 'Montserrat',
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      AutoSizeText(
-                        "Carteira",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10.sp,
-                          fontFamily: 'Montserrat',
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(Icons.account_balance_wallet),
-                      SizedBox(
-                        width: 1.w,
-                      ),
-                      AutoSizeText(
-                        "0€",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10.sp,
-                          fontFamily: 'Montserrat',
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
-                    ],
-                  ),
                   SizedBox(
-                    height: 20.h,
+                    height: 4.h,
                   ),
+                  Center(
+                    child: Container(
+                      width: 95.w,
+                      height: 15.h,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[350],
+                          borderRadius: const BorderRadius.all(Radius.circular(25)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              spreadRadius: 3,
+                              blurRadius: 4,
+                              offset: Offset(0, 2),
+                            )
+                          ]//BoxShadow
+                      ),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 2.w,),
+                            Icon(
+                              Icons.account_balance_wallet,
+                              size: 35.sp,
+                            ),
+                            SizedBox(width: 2.w,),
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(width: 0.4.h, color: Colors.black),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    AutoSizeText(
+                                      "Saldo:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.sp,
+                                        fontFamily: 'Montserrat',
+                                        decoration: TextDecoration.none,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    RichText(
+                                        text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: snapUser["saldo"].toString(),
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18.sp,
+                                                  fontFamily: 'Montserrat',
+                                                  decoration: TextDecoration.none,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:  "€",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18.sp,
+                                                  fontFamily: 'Montserrat',
+                                                  decoration: TextDecoration.none,
+                                                ),
+                                              ),
+                                            ]
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 3.w,),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Spacer(),
                   Center(
                     child: Row(children: <Widget>[
                       Spacer(),
@@ -169,6 +222,7 @@ class _SaldoState extends State<Saldo> {
                       Spacer(),
                     ]),
                   ),
+                  SizedBox(height: 5.h,),
                 ],
               ),
             ),

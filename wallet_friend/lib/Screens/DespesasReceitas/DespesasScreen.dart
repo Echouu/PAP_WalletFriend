@@ -1,26 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:wallet_friend/Screens/DespesasReceitas/Receitas/DividasScreen.dart';
-import 'package:wallet_friend/Screens/DespesasReceitas/Receitas/OutroRScreen.dart';
-import 'package:wallet_friend/Screens/DespesasReceitas/Receitas/Premio.dart';
-import 'package:wallet_friend/Screens/DespesasReceitas/Receitas/PresenteScreen.dart';
-import 'package:wallet_friend/Screens/DespesasReceitas/Receitas/RendaScreen.dart';
-import 'package:wallet_friend/Screens/DespesasReceitas/Receitas/SalarioScreen.dart';
+import 'package:wallet_friend/components/PagSaldo.dart';
 
-class ReceitasScreen extends StatefulWidget {
-  const ReceitasScreen({Key? key}) : super(key: key);
+class DespesasScreen extends StatefulWidget {
+  const DespesasScreen({Key? key}) : super(key: key);
 
   @override
-  State<ReceitasScreen> createState() => _ReceitasScreenState();
+  State<DespesasScreen> createState() => _DespesasScreenState();
 }
 
-class _ReceitasScreenState extends State<ReceitasScreen> {
+class _DespesasScreenState extends State<DespesasScreen> {
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
-
-
       final SaveButton = Material(
         child: Center(
           child: Container(
@@ -44,20 +37,6 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
           ),
         ),
       );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       return Scaffold(
         appBar: AppBar(
@@ -88,7 +67,7 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                   ),
                   Center(
                     child: AutoSizeText(
-                      'Receitas',
+                      'Despesas',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15.sp,
@@ -121,11 +100,30 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
+                        icon: Icon(Icons.directions_car, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Carro", Icon: Icons.directions_car, despesas: true,)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
                         icon: Icon(Icons.account_circle, color: Colors.black),
                         iconSize: 40,
                         onPressed: () {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => SalarioScreen()));
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Pessoal", Icon: Icons.account_circle, despesas: true)));
                         },
                       ),
                     ),
@@ -140,30 +138,11 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.card_giftcard, color: Colors.black),
+                        icon: Icon(Icons.dining, color: Colors.black),
                         iconSize: 40,
                         onPressed: () {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => PresenteScreen()));
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      width: 13.75.w,
-                    ),
-                    Container(
-                      width: 15.w,
-                      height: 15.h,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: Icon(Icons.workspace_premium, color: Colors.black),
-                        iconSize: 40,
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => PremioScreen()));
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Jantar Fora", Icon: Icons.dining, despesas: true)));
                         },
                       ),
                     ),
@@ -176,12 +155,215 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
 
 
 
+              Row(children: <Widget>[
+                SizedBox(
+                  width: 17.w,
+                ),
+                  AutoSizeText(
+                    'Carro',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                SizedBox(
+                  width: 19.w,
+                ),
+                AutoSizeText(
+                  'Pessoal',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  width: 14.w,
+                ),
+                AutoSizeText(
+                  'Jantar Fora',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                ]),
+
+
+                  Row(children: <Widget>[
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.home, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Casa", Icon: Icons.home, despesas: true)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.local_grocery_store, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Compras", Icon: Icons.local_grocery_store, despesas: true)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.videogame_asset_sharp, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Entretenimento", Icon: Icons.videogame_asset_sharp, despesas: true)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                  ]),
+
+                  Row(children: <Widget>[
+                    SizedBox(
+                      width: 17.w,
+                    ),
+                    AutoSizeText(
+                      'Casa',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 17.w,
+                    ),
+                    AutoSizeText(
+                      'Compras',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 11.w,
+                    ),
+                    AutoSizeText(
+                      'Entretenimento',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ]),
+
+
+
+
+
+
+                  Row(children: <Widget>[
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.account_balance, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Débito", Icon: Icons.account_balance, despesas: true)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.home_filled, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Serviços", Icon: Icons.home_filled, despesas: true)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                    Container(
+                      width: 15.w,
+                      height: 15.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.monetization_on_rounded, color: Colors.black),
+                        iconSize: 40,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Imposto", Icon: Icons.monetization_on_rounded, despesas: true)));
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13.75.w,
+                    ),
+                  ]),
                   Row(children: <Widget>[
                     SizedBox(
                       width: 16.w,
                     ),
                     AutoSizeText(
-                      'Salário',
+                      'Débito',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 10.sp,
@@ -189,10 +371,10 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                       ),
                     ),
                     SizedBox(
-                      width: 17.w,
+                      width: 9.w,
                     ),
                     AutoSizeText(
-                      'Presente',
+                      'Serviços de utilidade',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 10.sp,
@@ -200,10 +382,10 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                       ),
                     ),
                     SizedBox(
-                      width: 17.w,
+                      width: 6.w,
                     ),
                     AutoSizeText(
-                      'Premio',
+                      'Impostos',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 10.sp,
@@ -212,46 +394,7 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                     ),
                   ]),
 
-
                   Row(children: <Widget>[
-                    SizedBox(
-                      width: 13.75.w,
-                    ),
-                    Container(
-                      width: 15.w,
-                      height: 15.h,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: Icon(Icons.watch_later, color: Colors.black),
-                        iconSize: 40,
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => DividasScreen()));
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      width: 13.75.w,
-                    ),
-                    Container(
-                      width: 15.w,
-                      height: 15.h,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: Icon(Icons.home_repair_service ,color: Colors.black),
-                        iconSize: 40,
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => RendaScreen()));
-                        },
-                      ),
-                    ),
                     SizedBox(
                       width: 13.75.w,
                     ),
@@ -267,7 +410,7 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                         iconSize: 40,
                         onPressed: () {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => OutroRScreen()));
+                              MaterialPageRoute(builder: (context) => PagSaldoScreen(Nome: "Outros", Icon: Icons.attach_money, despesas: true)));
                         },
                       ),
                     ),
@@ -278,29 +421,7 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
 
                   Row(children: <Widget>[
                     SizedBox(
-                      width: 7.w,
-                    ),
-                    AutoSizeText(
-                      'Receita de Dividas',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 4.w,
-                    ),
-                    AutoSizeText(
-                      'Renda Comercial',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 11.w,
+                      width: 17.w,
                     ),
                     AutoSizeText(
                       'Outro',
@@ -311,6 +432,7 @@ class _ReceitasScreenState extends State<ReceitasScreen> {
                       ),
                     ),
                   ]),
+
                 ],
               ),
             ),
