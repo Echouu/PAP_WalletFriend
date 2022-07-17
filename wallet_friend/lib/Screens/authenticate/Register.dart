@@ -156,6 +156,10 @@ class _RegisterState extends State<Register> {
               onPressed: () async {
                 signUp(emailEditingController.text,
                     passwordEditingController.text, firstNameEditingController.text, secondNameEditingController.text);
+
+
+
+
               },
               child: Center(
                 child: AutoSizeText("Criar Conta",

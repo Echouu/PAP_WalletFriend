@@ -19,7 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final screens = [
     Historico(),
     Saldo(),
+    /*
     Graficos(),
+     */
     ProfileScreen(),
   ];
 
@@ -52,11 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 selectedIcon: Icon(Icons.account_balance_wallet),
                 label: 'Saldo',
               ),
+              /*
               NavigationDestination(
                 icon: Icon(Icons.assessment_outlined),
                 selectedIcon: Icon(Icons.assessment),
                 label: 'Gráficos',
               ),
+               */
               NavigationDestination(
                 icon: Icon(Icons.account_circle_outlined),
                 selectedIcon: Icon(Icons.account_circle),

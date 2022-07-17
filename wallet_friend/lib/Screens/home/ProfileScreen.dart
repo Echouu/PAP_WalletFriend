@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:wallet_friend/Screens/authenticate/EsquecerPass.dart';
 
 import '../authenticate/LoginScreen.dart';
 
@@ -15,18 +16,16 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final firstNameChangeController = new TextEditingController();
-  final secondNameChangeController = new TextEditingController();
-  final emailChangeController = new TextEditingController();
-  final passwordChangeController = new TextEditingController();
-  final confirmPasswordChangeController = new TextEditingController();
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     const primaryColor = Color(0xFF6F7372);
 
     return Sizer(builder: (context, orientation, deviceType) {
-      final firstNameField = TextFormField(
+
+      /*final firstNameField = TextFormField(
           autofocus: false,
           controller: firstNameChangeController,
           keyboardType: TextInputType.name,
@@ -134,6 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       );
+       */
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -170,58 +170,112 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-        body: Stack(
-          children: [
-            Column(children: <Widget>[
-              SizedBox(
-                height: 2.h,
-              ),
-              Center(
-                child: AutoSizeText(
-                  "Editar o teu perfil",
+        body: Stack(children: <Widget>[
+          Center(
+            child: Column(
+              key: _formKey,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10.h,
+                ),
+                AutoSizeText(
+                  "Wallet Friend",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 25.sp,
                       fontWeight: FontWeight.bold),
                 ),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              firstNameField,
-              SizedBox(
-                height: 2.h,
-              ),
-              secondNameField,
-              SizedBox(
-                height: 2.h,
-              ),
-              emailField,
-              SizedBox(
-                height: 2.h,
-              ),
-              passwordField,
-              SizedBox(
-                height: 2.h,
-              ),
-              confirmPasswordField,
-              SizedBox(
-                height: 5.h,
-              ),
-              confirmButton,
-              SizedBox(
-                height: 2.h,
-              ),
-              Center(
-                child: ActionChip(
-                    label: Text("Terminar sessão"),
-                    onPressed: () {
-                      logout(context);
-                    }),
-              ),
-            ]),
-          ],
-        ),
+                AutoSizeText(
+                  "Mudar Password",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+
+                SizedBox(
+                  height: 5.h,
+                ),
+
+                TextFormField(
+                    autofocus: false,
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return ("Digite o seu email");
+                      }
+                      //email validation
+                      if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return ("Digite um email valido");
+                      }
+                      return null;
+                    },
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      hintText: "Email",
+                      prefixIcon: Icon(Icons.mail, color: Colors.black),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    )),
+                SizedBox(
+                  height: 11.h,
+                ),
+                Material(
+                  child: Center(
+                    child: Container(
+                      width: 85.w,
+                      height: 8.h,
+                      child: RawMaterialButton(
+                        fillColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () async {
+                          try{
+                            if(emailController.text != ""){
+                              try{
+                                String email = emailController.text;
+                                await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+                                //"Email enviado com sucesso!"
+                              }catch(e){
+                                //"Ocorreu um erro ao enviar o email."
+                              }
+                            }
+                          }catch(e){
+
+                          }
+                        },
+                        child: Center(
+                          child: AutoSizeText("Confirmar",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat',
+                                fontSize: 12.sp,
+                              )),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Center(
+                  child: ActionChip(
+                      label: Text("Terminar sessão"),
+                      onPressed: () {
+                        logout(context);
+                      }),
+                ),
+              ],
+            ),
+          ),
+        ]),
       );
     });
   }
